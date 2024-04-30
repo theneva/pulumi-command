@@ -469,7 +469,7 @@
         "connection"
       ]
     },
-    "command:remote:CopyFile": {
+    "command:remote:Copy": {
       "description": "Copy a local file to a remote host.",
       "properties": {
         "connection": {
