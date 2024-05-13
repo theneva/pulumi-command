@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Copy a local file to a remote host.
+// Copy an Asset or Archive to a remote host.
 type Copy struct {
 	pulumi.CustomResourceState
 

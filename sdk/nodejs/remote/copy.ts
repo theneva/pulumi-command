@@ -8,7 +8,7 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 /**
- * Copy a local file to a remote host.
+ * Copy an Asset or Archive to a remote host.
  */
 export class Copy extends pulumi.CustomResource {
     /**

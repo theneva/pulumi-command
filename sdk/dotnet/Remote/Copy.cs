@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Command.Remote
 {
     /// <summary>
-    /// Copy a local file to a remote host.
+    /// Copy an Asset or Archive to a remote host.
     /// </summary>
     [CommandResourceType("command:remote:Copy")]
     public partial class Copy : global::Pulumi.CustomResource

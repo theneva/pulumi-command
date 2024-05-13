@@ -111,7 +111,7 @@ class Copy(pulumi.CustomResource):
                  triggers: Optional[pulumi.Input[Sequence[Any]]] = None,
                  __props__=None):
         """
-        Copy a local file to a remote host.
+        Copy an Asset or Archive to a remote host.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -128,7 +128,7 @@ class Copy(pulumi.CustomResource):
                  args: CopyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Copy a local file to a remote host.
+        Copy an Asset or Archive to a remote host.
 
         :param str resource_name: The name of the resource.
         :param CopyArgs args: The arguments to use to populate this resource's properties.

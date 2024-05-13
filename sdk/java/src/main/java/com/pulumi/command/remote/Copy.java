@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Copy a local file to a remote host.
+ * Copy an Asset or Archive to a remote host.
  * 
  */
 @ResourceType(type="command:remote:Copy")
