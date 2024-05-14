@@ -18,23 +18,23 @@ class CopyArgs:
     def __init__(__self__, *,
                  connection: pulumi.Input['ConnectionArgs'],
                  remote_path: pulumi.Input[str],
-                 local_archive: Optional[pulumi.Input[pulumi.Archive]] = None,
-                 local_asset: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
+                 archive: Optional[pulumi.Input[pulumi.Archive]] = None,
+                 asset: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
                  triggers: Optional[pulumi.Input[Sequence[Any]]] = None):
         """
         The set of arguments for constructing a Copy resource.
         :param pulumi.Input['ConnectionArgs'] connection: The parameters with which to connect to the remote host.
         :param pulumi.Input[str] remote_path: The destination path in the remote host.
-        :param pulumi.Input[pulumi.Archive] local_archive: An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-        :param pulumi.Input[Union[pulumi.Asset, pulumi.Archive]] local_asset: An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
+        :param pulumi.Input[pulumi.Archive] archive: An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+        :param pulumi.Input[Union[pulumi.Asset, pulumi.Archive]] asset: An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
         :param pulumi.Input[Sequence[Any]] triggers: Trigger replacements on changes to this input.
         """
         pulumi.set(__self__, "connection", connection)
         pulumi.set(__self__, "remote_path", remote_path)
-        if local_archive is not None:
-            pulumi.set(__self__, "local_archive", local_archive)
-        if local_asset is not None:
-            pulumi.set(__self__, "local_asset", local_asset)
+        if archive is not None:
+            pulumi.set(__self__, "archive", archive)
+        if asset is not None:
+            pulumi.set(__self__, "asset", asset)
         if triggers is not None:
             pulumi.set(__self__, "triggers", triggers)
 
@@ -63,28 +63,28 @@ class CopyArgs:
         pulumi.set(self, "remote_path", value)
 
     @property
-    @pulumi.getter(name="localArchive")
-    def local_archive(self) -> Optional[pulumi.Input[pulumi.Archive]]:
+    @pulumi.getter
+    def archive(self) -> Optional[pulumi.Input[pulumi.Archive]]:
         """
-        An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
+        An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
         """
-        return pulumi.get(self, "local_archive")
+        return pulumi.get(self, "archive")
 
-    @local_archive.setter
-    def local_archive(self, value: Optional[pulumi.Input[pulumi.Archive]]):
-        pulumi.set(self, "local_archive", value)
+    @archive.setter
+    def archive(self, value: Optional[pulumi.Input[pulumi.Archive]]):
+        pulumi.set(self, "archive", value)
 
     @property
-    @pulumi.getter(name="localAsset")
-    def local_asset(self) -> Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]]:
+    @pulumi.getter
+    def asset(self) -> Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]]:
         """
-        An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
+        An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
         """
-        return pulumi.get(self, "local_asset")
+        return pulumi.get(self, "asset")
 
-    @local_asset.setter
-    def local_asset(self, value: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]]):
-        pulumi.set(self, "local_asset", value)
+    @asset.setter
+    def asset(self, value: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]]):
+        pulumi.set(self, "asset", value)
 
     @property
     @pulumi.getter
@@ -104,9 +104,9 @@ class Copy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 archive: Optional[pulumi.Input[pulumi.Archive]] = None,
+                 asset: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
                  connection: Optional[pulumi.Input[pulumi.InputType['ConnectionArgs']]] = None,
-                 local_archive: Optional[pulumi.Input[pulumi.Archive]] = None,
-                 local_asset: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
                  remote_path: Optional[pulumi.Input[str]] = None,
                  triggers: Optional[pulumi.Input[Sequence[Any]]] = None,
                  __props__=None):
@@ -115,9 +115,9 @@ class Copy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.Archive] archive: An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+        :param pulumi.Input[Union[pulumi.Asset, pulumi.Archive]] asset: An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
         :param pulumi.Input[pulumi.InputType['ConnectionArgs']] connection: The parameters with which to connect to the remote host.
-        :param pulumi.Input[pulumi.Archive] local_archive: An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-        :param pulumi.Input[Union[pulumi.Asset, pulumi.Archive]] local_asset: An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
         :param pulumi.Input[str] remote_path: The destination path in the remote host.
         :param pulumi.Input[Sequence[Any]] triggers: Trigger replacements on changes to this input.
         """
@@ -145,9 +145,9 @@ class Copy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 archive: Optional[pulumi.Input[pulumi.Archive]] = None,
+                 asset: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
                  connection: Optional[pulumi.Input[pulumi.InputType['ConnectionArgs']]] = None,
-                 local_archive: Optional[pulumi.Input[pulumi.Archive]] = None,
-                 local_asset: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
                  remote_path: Optional[pulumi.Input[str]] = None,
                  triggers: Optional[pulumi.Input[Sequence[Any]]] = None,
                  __props__=None):
@@ -159,11 +159,11 @@ class Copy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CopyArgs.__new__(CopyArgs)
 
+            __props__.__dict__["archive"] = archive
+            __props__.__dict__["asset"] = asset
             if connection is None and not opts.urn:
                 raise TypeError("Missing required property 'connection'")
             __props__.__dict__["connection"] = None if connection is None else pulumi.Output.secret(connection)
-            __props__.__dict__["local_archive"] = local_archive
-            __props__.__dict__["local_asset"] = local_asset
             if remote_path is None and not opts.urn:
                 raise TypeError("Missing required property 'remote_path'")
             __props__.__dict__["remote_path"] = remote_path
@@ -192,12 +192,28 @@ class Copy(pulumi.CustomResource):
 
         __props__ = CopyArgs.__new__(CopyArgs)
 
+        __props__.__dict__["archive"] = None
+        __props__.__dict__["asset"] = None
         __props__.__dict__["connection"] = None
-        __props__.__dict__["local_archive"] = None
-        __props__.__dict__["local_asset"] = None
         __props__.__dict__["remote_path"] = None
         __props__.__dict__["triggers"] = None
         return Copy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def archive(self) -> pulumi.Output[Optional[pulumi.Archive]]:
+        """
+        An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+        """
+        return pulumi.get(self, "archive")
+
+    @property
+    @pulumi.getter
+    def asset(self) -> pulumi.Output[Optional[Union[pulumi.Asset, pulumi.Archive]]]:
+        """
+        An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+        """
+        return pulumi.get(self, "asset")
 
     @property
     @pulumi.getter
@@ -206,22 +222,6 @@ class Copy(pulumi.CustomResource):
         The parameters with which to connect to the remote host.
         """
         return pulumi.get(self, "connection")
-
-    @property
-    @pulumi.getter(name="localArchive")
-    def local_archive(self) -> pulumi.Output[Optional[pulumi.Archive]]:
-        """
-        An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-        """
-        return pulumi.get(self, "local_archive")
-
-    @property
-    @pulumi.getter(name="localAsset")
-    def local_asset(self) -> pulumi.Output[Optional[Union[pulumi.Asset, pulumi.Archive]]]:
-        """
-        An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-        """
-        return pulumi.get(self, "local_asset")
 
     @property
     @pulumi.getter(name="remotePath")

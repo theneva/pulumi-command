@@ -472,18 +472,18 @@
     "command:remote:Copy": {
       "description": "Copy an Asset or Archive to a remote host.",
       "properties": {
+        "archive": {
+          "$ref": "pulumi.json#/Archive",
+          "description": "An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set."
+        },
+        "asset": {
+          "$ref": "pulumi.json#/Asset",
+          "description": "An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set."
+        },
         "connection": {
           "$ref": "#/types/command:remote:Connection",
           "description": "The parameters with which to connect to the remote host.",
           "secret": true
-        },
-        "localArchive": {
-          "$ref": "pulumi.json#/Archive",
-          "description": "An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set."
-        },
-        "localAsset": {
-          "$ref": "pulumi.json#/Asset",
-          "description": "An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set."
         },
         "remotePath": {
           "type": "string",
@@ -503,18 +503,18 @@
         "remotePath"
       ],
       "inputProperties": {
+        "archive": {
+          "$ref": "pulumi.json#/Archive",
+          "description": "An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set."
+        },
+        "asset": {
+          "$ref": "pulumi.json#/Asset",
+          "description": "An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set."
+        },
         "connection": {
           "$ref": "#/types/command:remote:Connection",
           "description": "The parameters with which to connect to the remote host.",
           "secret": true
-        },
-        "localArchive": {
-          "$ref": "pulumi.json#/Archive",
-          "description": "An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set."
-        },
-        "localAsset": {
-          "$ref": "pulumi.json#/Asset",
-          "description": "An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set."
         },
         "remotePath": {
           "type": "string",

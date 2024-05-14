@@ -22,6 +22,36 @@ public final class CopyArgs extends com.pulumi.resources.ResourceArgs {
     public static final CopyArgs Empty = new CopyArgs();
 
     /**
+     * An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+     * 
+     */
+    @Import(name="archive")
+    private @Nullable Output<Archive> archive;
+
+    /**
+     * @return An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+     * 
+     */
+    public Optional<Output<Archive>> archive() {
+        return Optional.ofNullable(this.archive);
+    }
+
+    /**
+     * An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+     * 
+     */
+    @Import(name="asset")
+    private @Nullable Output<AssetOrArchive> asset;
+
+    /**
+     * @return An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+     * 
+     */
+    public Optional<Output<AssetOrArchive>> asset() {
+        return Optional.ofNullable(this.asset);
+    }
+
+    /**
      * The parameters with which to connect to the remote host.
      * 
      */
@@ -34,36 +64,6 @@ public final class CopyArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Output<ConnectionArgs> connection() {
         return this.connection;
-    }
-
-    /**
-     * An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-     * 
-     */
-    @Import(name="localArchive")
-    private @Nullable Output<Archive> localArchive;
-
-    /**
-     * @return An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-     * 
-     */
-    public Optional<Output<Archive>> localArchive() {
-        return Optional.ofNullable(this.localArchive);
-    }
-
-    /**
-     * An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-     * 
-     */
-    @Import(name="localAsset")
-    private @Nullable Output<AssetOrArchive> localAsset;
-
-    /**
-     * @return An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-     * 
-     */
-    public Optional<Output<AssetOrArchive>> localAsset() {
-        return Optional.ofNullable(this.localAsset);
     }
 
     /**
@@ -99,9 +99,9 @@ public final class CopyArgs extends com.pulumi.resources.ResourceArgs {
     private CopyArgs() {}
 
     private CopyArgs(CopyArgs $) {
+        this.archive = $.archive;
+        this.asset = $.asset;
         this.connection = $.connection;
-        this.localArchive = $.localArchive;
-        this.localAsset = $.localAsset;
         this.remotePath = $.remotePath;
         this.triggers = $.triggers;
     }
@@ -125,6 +125,48 @@ public final class CopyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param archive An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder archive(@Nullable Output<Archive> archive) {
+            $.archive = archive;
+            return this;
+        }
+
+        /**
+         * @param archive An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder archive(Archive archive) {
+            return archive(Output.of(archive));
+        }
+
+        /**
+         * @param asset An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder asset(@Nullable Output<AssetOrArchive> asset) {
+            $.asset = asset;
+            return this;
+        }
+
+        /**
+         * @param asset An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder asset(AssetOrArchive asset) {
+            return asset(Output.of(asset));
+        }
+
+        /**
          * @param connection The parameters with which to connect to the remote host.
          * 
          * @return builder
@@ -143,48 +185,6 @@ public final class CopyArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder connection(ConnectionArgs connection) {
             return connection(Output.of(connection));
-        }
-
-        /**
-         * @param localArchive An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder localArchive(@Nullable Output<Archive> localArchive) {
-            $.localArchive = localArchive;
-            return this;
-        }
-
-        /**
-         * @param localArchive An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder localArchive(Archive localArchive) {
-            return localArchive(Output.of(localArchive));
-        }
-
-        /**
-         * @param localAsset An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder localAsset(@Nullable Output<AssetOrArchive> localAsset) {
-            $.localAsset = localAsset;
-            return this;
-        }
-
-        /**
-         * @param localAsset An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder localAsset(AssetOrArchive localAsset) {
-            return localAsset(Output.of(localAsset));
         }
 
         /**

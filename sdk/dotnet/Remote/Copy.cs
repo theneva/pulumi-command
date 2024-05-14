@@ -16,22 +16,22 @@ namespace Pulumi.Command.Remote
     public partial class Copy : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+        /// </summary>
+        [Output("archive")]
+        public Output<Archive?> Archive { get; private set; } = null!;
+
+        /// <summary>
+        /// An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+        /// </summary>
+        [Output("asset")]
+        public Output<AssetOrArchive?> Asset { get; private set; } = null!;
+
+        /// <summary>
         /// The parameters with which to connect to the remote host.
         /// </summary>
         [Output("connection")]
         public Output<Outputs.Connection> Connection { get; private set; } = null!;
-
-        /// <summary>
-        /// An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-        /// </summary>
-        [Output("localArchive")]
-        public Output<Archive?> LocalArchive { get; private set; } = null!;
-
-        /// <summary>
-        /// An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-        /// </summary>
-        [Output("localAsset")]
-        public Output<AssetOrArchive?> LocalAsset { get; private set; } = null!;
 
         /// <summary>
         /// The destination path in the remote host.
@@ -94,6 +94,18 @@ namespace Pulumi.Command.Remote
 
     public sealed class CopyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+        /// </summary>
+        [Input("archive")]
+        public Input<Archive>? Archive { get; set; }
+
+        /// <summary>
+        /// An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+        /// </summary>
+        [Input("asset")]
+        public Input<AssetOrArchive>? Asset { get; set; }
+
         [Input("connection", required: true)]
         private Input<Inputs.ConnectionArgs>? _connection;
 
@@ -109,18 +121,6 @@ namespace Pulumi.Command.Remote
                 _connection = Output.Tuple<Input<Inputs.ConnectionArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
-
-        /// <summary>
-        /// An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-        /// </summary>
-        [Input("localArchive")]
-        public Input<Archive>? LocalArchive { get; set; }
-
-        /// <summary>
-        /// An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-        /// </summary>
-        [Input("localAsset")]
-        public Input<AssetOrArchive>? LocalAsset { get; set; }
 
         /// <summary>
         /// The destination path in the remote host.

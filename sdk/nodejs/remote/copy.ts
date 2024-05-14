@@ -38,17 +38,17 @@ export class Copy extends pulumi.CustomResource {
     }
 
     /**
+     * An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+     */
+    public readonly archive!: pulumi.Output<pulumi.asset.Archive | undefined>;
+    /**
+     * An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+     */
+    public readonly asset!: pulumi.Output<pulumi.asset.Asset | pulumi.asset.Archive | undefined>;
+    /**
      * The parameters with which to connect to the remote host.
      */
     public readonly connection!: pulumi.Output<outputs.remote.Connection>;
-    /**
-     * An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-     */
-    public readonly localArchive!: pulumi.Output<pulumi.asset.Archive | undefined>;
-    /**
-     * An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-     */
-    public readonly localAsset!: pulumi.Output<pulumi.asset.Asset | pulumi.asset.Archive | undefined>;
     /**
      * The destination path in the remote host.
      */
@@ -75,15 +75,15 @@ export class Copy extends pulumi.CustomResource {
             if ((!args || args.remotePath === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'remotePath'");
             }
+            resourceInputs["archive"] = args ? args.archive : undefined;
+            resourceInputs["asset"] = args ? args.asset : undefined;
             resourceInputs["connection"] = args?.connection ? pulumi.secret((args.connection ? pulumi.output(args.connection).apply(inputs.remote.connectionArgsProvideDefaults) : undefined)) : undefined;
-            resourceInputs["localArchive"] = args ? args.localArchive : undefined;
-            resourceInputs["localAsset"] = args ? args.localAsset : undefined;
             resourceInputs["remotePath"] = args ? args.remotePath : undefined;
             resourceInputs["triggers"] = args ? args.triggers : undefined;
         } else {
+            resourceInputs["archive"] = undefined /*out*/;
+            resourceInputs["asset"] = undefined /*out*/;
             resourceInputs["connection"] = undefined /*out*/;
-            resourceInputs["localArchive"] = undefined /*out*/;
-            resourceInputs["localAsset"] = undefined /*out*/;
             resourceInputs["remotePath"] = undefined /*out*/;
             resourceInputs["triggers"] = undefined /*out*/;
         }
@@ -99,17 +99,17 @@ export class Copy extends pulumi.CustomResource {
  */
 export interface CopyArgs {
     /**
+     * An archive to upload as the source of the copy. It must be a path based archive. Only one of Asset or Archive can be set.
+     */
+    archive?: pulumi.Input<pulumi.asset.Archive>;
+    /**
+     * An asset to upload as the source of the copy. It must be a path based asset. Only one of Asset or Archive can be set.
+     */
+    asset?: pulumi.Input<pulumi.asset.Asset | pulumi.asset.Archive>;
+    /**
      * The parameters with which to connect to the remote host.
      */
     connection: pulumi.Input<inputs.remote.ConnectionArgs>;
-    /**
-     * An archive to upload. It must be a path based archive. Only one of LocalAsset or LocalArchive can be set.
-     */
-    localArchive?: pulumi.Input<pulumi.asset.Archive>;
-    /**
-     * An asset to upload. It must be a path based asset. Only one of LocalAsset or LocalArchive can be set.
-     */
-    localAsset?: pulumi.Input<pulumi.asset.Asset | pulumi.asset.Archive>;
     /**
      * The destination path in the remote host.
      */
